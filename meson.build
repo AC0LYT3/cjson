@@ -1,21 +1,18 @@
-project('cjson', 'c')
+project('cjson', 'c',
+  default_options: [
+    'buildtype=release',
+    'warning_level=3'])
 
-src = fileglob('src/*.c')
+cjson_src = ['src/cjson.c']
 
-# Debug build options
-debug_options = ['-I./src/include', '-O0', '-g', '-D_DEBUG']
-debug_build = configuration_data()
+local_include = include_directories('./src/include')
 
-debug_build.set('buildtype', 'debug')
-debug_build.set('c_args', debug_options)
-
-# Release build options
-release_options = ['-I./src/include', '-O2', '-Wall', '-Wpedantic', '-Wextra']
-release_build = configuration_data()
-
-release_build.set('buildtype', 'release')
-release_build.set('c_args', release_options)
+if get_option('buildtype') == 'debug'
+  add_project_arguments('-D_DEBUG', language : 'c')
+endif
 
 shared_library('cjson', 
-  sources : src,
-  configuration : [debug_build, release_build])
+  sources : cjson_src,
+  include_directories : local_include)
+
+subdir('tests')
