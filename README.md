@@ -1,7 +1,14 @@
 # CJSON
 
 ## Build
-
+Configure your build environment
+```
+./configure.sh
+```
+Build cjson!
+```
+./build.sh
+```
 ## Requirements
 
 ## Documentation
