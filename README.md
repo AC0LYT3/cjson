@@ -1,14 +1,11 @@
 # CJSON
 
 ## Build
-Configure your build environment
 ```
-./configure.sh
+meson setup build
+ninja -v -C build
 ```
-Build cjson!
-```
-./build.sh
-```
+
 ## Requirements
 
 ## Documentation
