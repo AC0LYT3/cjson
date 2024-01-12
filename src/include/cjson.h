@@ -35,7 +35,10 @@ typedef struct cjson_data {
 // CJSON Object
 typedef struct cjson {
     int fd; // Handle to file
-    CJSON_DATA entry; // Data tree entry
+    PCJSON_DATA entry; // Data tree entry
+    char used; // This flag tells the handler that it can be freed
+    struct cjson *next;
+    struct cjson *prev;
 } *PCJSON, CJSON;
 
 // Create handle to json object
